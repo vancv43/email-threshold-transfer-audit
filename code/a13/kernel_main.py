@@ -4,7 +4,7 @@
   classical          the three classical baselines, seeds 0-4, CPU
   smoke              mg, tb and classical on a small sample with a tiny encoder; checks the outputs
 Every job first applies a13_split.py (adaptation ham into train, tcal, evaluation part of S2).
-Inputs: dataset jnsm-a13-data (messages, splits, G1, G2) and dataset jnsm-a13-code (code/, with a13/configs.json).
+Inputs: dataset a13-data (messages, splits, G1, G2) and dataset a13-code (code/, with a13/configs.json).
 Output: work/out/ and DONE.
 """
 import glob, json, os, pathlib, shutil, subprocess, sys

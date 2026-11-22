@@ -1,0 +1,38 @@
+{
+ "per_source_cap": 3000,
+ "flag_threshold": 0.9,
+ "source_within_class": {
+  "ham": {
+   "sources": {
+    "apache": 3000,
+    "enron_spam": 3000,
+    "fedora": 3000,
+    "gnu": 3000,
+    "python": 3000,
+    "spamassassin": 3000
+   },
+   "body": 0.9991215888888888,
+   "header": 0.9989438592592593,
+   "url": 0.8345482925925927,
+   "struct": 0.6284552407407407
+  },
+  "spam": {
+   "sources": {
+    "enron_spam": 3000,
+    "untroubled": 3000,
+    "nazario": 2856,
+    "spamassassin": 1631
+   },
+   "body": 0.9781395053777665,
+   "header": 0.9848477892830763,
+   "url": 0.9317126537858142,
+   "struct": 0.8399130518881679
+  }
+ },
+ "label_from_view_pool": {
+  "body": 0.9996634166666667,
+  "header": 0.9970316388888889,
+  "url": 0.962391263888889,
+  "struct": 0.8437672222222221
+ }
+}

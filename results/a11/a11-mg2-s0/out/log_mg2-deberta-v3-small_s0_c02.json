@@ -1,0 +1,57 @@
+{
+ "model": "microsoft/deberta-v3-small",
+ "seed": 0,
+ "lr": 2e-05,
+ "batch": 16,
+ "wd": 0.0,
+ "epochs": 3,
+ "max_len": 256,
+ "head_lr": 0.001,
+ "para": 1,
+ "obf": 1,
+ "p_obf": 0.25,
+ "mdrop": 0.3,
+ "use": "body,header,url,struct",
+ "aux": 0.5,
+ "ls": 0.1,
+ "select": "ood",
+ "pilot_frac": 0.0,
+ "data": "/kaggle/working/mg_data",
+ "out": "/kaggle/working/out",
+ "tag": "mg2-deberta-v3-small_s0_c02",
+ "ckpt": "/tmp/mg2-deberta-v3-small_s0_c02.pt",
+ "infer": false,
+ "n_train": 37010,
+ "n_para": 1388,
+ "epoch_log": [
+  {
+   "epoch": 1,
+   "val_pr_auc": 0.999949740995646,
+   "val_tpr_fpr_0p1": 0.9951961569255404,
+   "elapsed_s": 573.5,
+   "ood_tpr_fpr_0p1": 0.9943955164131305
+  },
+  {
+   "epoch": 2,
+   "val_pr_auc": 0.9999942568067193,
+   "val_tpr_fpr_0p1": 0.9991993594875901,
+   "elapsed_s": 1191.7,
+   "ood_tpr_fpr_0p1": 0.988791032826261
+  },
+  {
+   "epoch": 3,
+   "val_pr_auc": 0.9999987199991808,
+   "val_tpr_fpr_0p1": 1.0,
+   "elapsed_s": 1808.0,
+   "ood_tpr_fpr_0p1": 0.9943955164131305
+  }
+ ],
+ "val_pr_auc": 0.9999987199991808,
+ "val_tpr_fpr_0p1": 1.0,
+ "sel_key": [
+  0.9943955164131305,
+  0.9999987199991808
+ ],
+ "best_epoch": 3,
+ "train_s": 1853.4
+}

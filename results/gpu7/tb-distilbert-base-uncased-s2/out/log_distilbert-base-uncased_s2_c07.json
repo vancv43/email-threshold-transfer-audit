@@ -1,0 +1,34 @@
+{
+ "model": "distilbert-base-uncased",
+ "seed": 2,
+ "lr": 2e-05,
+ "batch": 32,
+ "wd": 0.01,
+ "epochs": 3,
+ "max_len": 256,
+ "data": "/kaggle/input/notebooks/chauvvan/jnsm-step3-a7/out/gpu_data",
+ "out": "/kaggle/working/out",
+ "tag": "distilbert-base-uncased_s2_c07",
+ "ckpt": "/tmp/distilbert-base-uncased_s2_c07.pt",
+ "infer": false,
+ "n_train": 44051,
+ "epoch_log": [
+  {
+   "epoch": 1,
+   "val_pr_auc": 0.9999184530071433,
+   "elapsed_s": 286.7
+  },
+  {
+   "epoch": 2,
+   "val_pr_auc": 0.9999232168477983,
+   "elapsed_s": 574.3
+  },
+  {
+   "epoch": 3,
+   "val_pr_auc": 0.9999688560665592,
+   "elapsed_s": 863.0
+  }
+ ],
+ "val_pr_auc": 0.9999688560665592,
+ "train_s": 863.3
+}

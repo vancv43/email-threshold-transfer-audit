@@ -1,0 +1,6 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the article."
+title: "Threshold transfer in email threat detection: A multi-signal detector audited under LLM-rewritten spam, temporal drift, and corpus shift"
+authors:
+  - name: Anonymous authors
+license: MIT

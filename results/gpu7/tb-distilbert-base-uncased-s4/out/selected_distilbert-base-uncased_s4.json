@@ -1,0 +1,1 @@
+{"model": "distilbert-base-uncased", "seed": 4, "index": 13, "config": {"lr": 4e-05, "batch": 16, "wd": 0.01}, "val_pr_auc": 0.9999890326319831, "max_len": 256}

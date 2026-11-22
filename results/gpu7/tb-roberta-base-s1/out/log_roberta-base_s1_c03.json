@@ -1,0 +1,34 @@
+{
+ "model": "roberta-base",
+ "seed": 1,
+ "lr": 1e-05,
+ "batch": 32,
+ "wd": 0.01,
+ "epochs": 3,
+ "max_len": 256,
+ "data": "/kaggle/input/jnsm-step3-a7/out/gpu_data",
+ "out": "/kaggle/working/out",
+ "tag": "roberta-base_s1_c03",
+ "ckpt": "/tmp/roberta-base_s1_c03.pt",
+ "infer": false,
+ "n_train": 43891,
+ "epoch_log": [
+  {
+   "epoch": 1,
+   "val_pr_auc": 0.9999098734547732,
+   "elapsed_s": 611.9
+  },
+  {
+   "epoch": 2,
+   "val_pr_auc": 0.999957370858796,
+   "elapsed_s": 1216.2
+  },
+  {
+   "epoch": 3,
+   "val_pr_auc": 0.9999549442737882,
+   "elapsed_s": 1820.4
+  }
+ ],
+ "val_pr_auc": 0.999957370858796,
+ "train_s": 1820.4
+}

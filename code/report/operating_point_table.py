@@ -30,8 +30,8 @@ for f in sorted(glob.glob(str(ROOT / "results/baselines/classical_seed*.json")))
             t = v["test"][s]
             r = from_rates(t["n"], t["n_spam"], t["cal_thr_tpr"], t["cal_thr_fpr"]); r["auc"] = t["roc_auc"]
             runs.setdefault(m, {}).setdefault(s, []).append(r)
-for f in sorted(glob.glob(str(ROOT / "results/gpu7/jnsm-tb7-*/out/scores_*_best.parquet"))):
-    m = f.split("jnsm-tb7-")[1].split("/")[0].rsplit("-s", 1)[0]
+for f in sorted(glob.glob(str(ROOT / "results/gpu7/tb-*/out/scores_*_best.parquet"))):
+    m = f.split("tb-")[1].split("/")[0].rsplit("-s", 1)[0]
     g = {k: v for k, v in pd.read_parquet(f).groupby("set")}
     thr = threshold_at_fpr(g["cal"]["label"].values, g["cal"]["score"].values, 0.001)
     for s in SETS:

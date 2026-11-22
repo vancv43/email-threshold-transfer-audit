@@ -1,0 +1,1 @@
+{"model": "roberta-base", "seed": 4, "index": 0, "config": {"lr": 1e-05, "batch": 16, "wd": 0.0}, "val_pr_auc": 0.9999799958245323, "max_len": 256}

@@ -1,0 +1,45 @@
+{
+ "model": "microsoft/deberta-v3-small",
+ "seed": 0,
+ "lr": 2e-05,
+ "batch": 16,
+ "wd": 0.01,
+ "epochs": 1,
+ "max_len": 256,
+ "head_lr": 0.001,
+ "para": 1,
+ "obf": 1,
+ "p_obf": 0.25,
+ "mdrop": 0.1,
+ "use": "body,header,url,struct",
+ "aux": 0.0,
+ "ls": 0.0,
+ "select": "pr",
+ "pilot_frac": 0.0,
+ "data": "/kaggle/working/mg13_data",
+ "out": "/kaggle/working/out",
+ "tag": "a14b-frozen_s0",
+ "ckpt": "/tmp/a14b-frozen_s0.pt",
+ "infer": false,
+ "init": "/tmp/a14b-stage1_s0.pt",
+ "freeze_gate": 1,
+ "drop_target_ham": 0,
+ "n_train": 48751,
+ "n_para": 1388,
+ "n_target_ham": 5000,
+ "epoch_log": [
+  {
+   "epoch": 1,
+   "val_pr_auc": 0.9993451327387932,
+   "val_tpr_fpr_0p1": 0.9967974379503602,
+   "elapsed_s": 729.7
+  }
+ ],
+ "val_pr_auc": 0.9993451327387932,
+ "val_tpr_fpr_0p1": 0.9967974379503602,
+ "sel_key": [
+  0.9993451327387932
+ ],
+ "best_epoch": 1,
+ "train_s": 730.6
+}

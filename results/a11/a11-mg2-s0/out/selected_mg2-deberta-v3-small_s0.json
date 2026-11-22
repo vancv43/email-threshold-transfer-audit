@@ -1,0 +1,28 @@
+{
+ "model": "microsoft/deberta-v3-small",
+ "seed": 0,
+ "name": "mg2",
+ "extra": [
+  "--select",
+  "ood",
+  "--aux",
+  "0.5",
+  "--ls",
+  "0.1",
+  "--mdrop",
+  "0.3"
+ ],
+ "grid": "compact",
+ "index": 4,
+ "config": {
+  "lr": 3e-05,
+  "batch": 16,
+  "wd": 0.0
+ },
+ "sel_key": [
+  0.9991993594875901,
+  0.9991227500233414
+ ],
+ "val_pr_auc": 0.9991227500233414,
+ "val_tpr_fpr_0p1": 0.9047237790232185
+}

@@ -1,0 +1,34 @@
+{
+ "model": "microsoft/deberta-v3-base",
+ "seed": 4,
+ "lr": 1e-05,
+ "batch": 32,
+ "wd": 0.0,
+ "epochs": 3,
+ "max_len": 256,
+ "data": "/kaggle/input/datasets/kinkhi/jnsm-gpu-a7",
+ "out": "/kaggle/working/out",
+ "tag": "deberta-v3-base_s4_c02",
+ "ckpt": "/tmp/deberta-v3-base_s4_c02.pt",
+ "infer": false,
+ "n_train": 43809,
+ "epoch_log": [
+  {
+   "epoch": 1,
+   "val_pr_auc": 0.9999670937727378,
+   "elapsed_s": 1044.7
+  },
+  {
+   "epoch": 2,
+   "val_pr_auc": 0.9999986300128898,
+   "elapsed_s": 2083.2
+  },
+  {
+   "epoch": 3,
+   "val_pr_auc": 0.9999951950929324,
+   "elapsed_s": 3121.6
+  }
+ ],
+ "val_pr_auc": 0.9999986300128898,
+ "train_s": 3121.6
+}

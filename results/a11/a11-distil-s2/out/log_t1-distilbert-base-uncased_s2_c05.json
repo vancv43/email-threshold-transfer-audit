@@ -1,0 +1,43 @@
+{
+ "model": "distilbert-base-uncased",
+ "seed": 2,
+ "lr": 3e-05,
+ "batch": 16,
+ "wd": 0.01,
+ "epochs": 3,
+ "max_len": 256,
+ "data": "/kaggle/working/tb_data",
+ "out": "/kaggle/working/out",
+ "tag": "t1-distilbert-base-uncased_s2_c05",
+ "ckpt": "/tmp/t1-distilbert-base-uncased_s2_c05.pt",
+ "infer": false,
+ "select": "ood",
+ "n_train": 37326,
+ "epoch_log": [
+  {
+   "epoch": 1,
+   "val_pr_auc": 0.9998683385264563,
+   "elapsed_s": 274.2,
+   "ood_tpr_fpr_0p1": 0.9863013698630136
+  },
+  {
+   "epoch": 2,
+   "val_pr_auc": 0.9999661237292012,
+   "elapsed_s": 570.8,
+   "ood_tpr_fpr_0p1": 0.9888698630136986
+  },
+  {
+   "epoch": 3,
+   "val_pr_auc": 0.9999131255846856,
+   "elapsed_s": 866.0,
+   "ood_tpr_fpr_0p1": 0.9529109589041096
+  }
+ ],
+ "val_pr_auc": 0.9999661237292012,
+ "sel_key": [
+  0.9888698630136986,
+  0.9999661237292012
+ ],
+ "best_epoch": 2,
+ "train_s": 889.3
+}

@@ -1,0 +1,40 @@
+{
+ "g1": {
+  "n": 3000,
+  "refusal": 0,
+  "links_lost": 374,
+  "non_english": 738,
+  "kept": 1994,
+  "kept_by_source": {
+   "untroubled": 1668,
+   "nazario": 326
+  },
+  "kept_by_year": {
+   "2015": 51,
+   "2016": 280,
+   "2017": 308,
+   "2018": 403,
+   "2019": 485,
+   "2020": 467
+  }
+ },
+ "g2": {
+  "n": 1500,
+  "refusal": 2,
+  "links_lost": 273,
+  "non_english": 117,
+  "kept": 1128,
+  "kept_by_source": {
+   "untroubled": 999,
+   "nazario": 129
+  },
+  "kept_by_year": {
+   "2021": 205,
+   "2022": 197,
+   "2023": 215,
+   "2024": 204,
+   "2025": 154,
+   "2026": 153
+  }
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "model": "microsoft/deberta-v3-small",
+ "seed": 4,
+ "name": "mg",
+ "extra": [],
+ "index": 0,
+ "config": {
+  "lr": 1e-05,
+  "batch": 16,
+  "wd": 0.0
+ },
+ "val_pr_auc": 1.0,
+ "val_tpr_fpr_0p1": 1.0
+}

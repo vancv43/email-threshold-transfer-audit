@@ -1,0 +1,34 @@
+{
+ "pool": "six training-pool sources, 2015-2020",
+ "per_source_cap": 3000,
+ "source_within_class": {
+  "ham": {
+   "sources": {
+    "apache": 3000,
+    "fedora": 3000,
+    "gnu": 3000,
+    "python": 3000
+   },
+   "body": 0.9989410092592592,
+   "header": 0.9929171759259261,
+   "url": 0.8264857037037037,
+   "struct": 0.5486945555555556
+  },
+  "spam": {
+   "sources": {
+    "untroubled": 3000,
+    "nazario": 1419
+   },
+   "body": 0.9962529950669486,
+   "header": 0.9768453136011275,
+   "url": 0.9696995536762978,
+   "struct": 0.7316457599248296
+  }
+ },
+ "label_from_view_pool": {
+  "body": 0.9996654166666668,
+  "header": 0.9871087638888889,
+  "url": 0.9657691111111111,
+  "struct": 0.8083113888888888
+ }
+}

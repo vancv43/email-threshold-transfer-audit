@@ -1,0 +1,1 @@
+{"model": "microsoft/deberta-v3-base", "seed": 4, "index": 1, "config": {"lr": 1e-05, "batch": 16, "wd": 0.01}, "val_pr_auc": 1.0, "max_len": 256}

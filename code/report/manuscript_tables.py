@@ -3,7 +3,7 @@
 Inputs: classical baselines (results/baselines/*.json), transformer baselines (scores in results/gpu7/), MuST-Guard
 (scores in results/mustguard/confirm/ and results/mustguard/summary_confirm_a9.json), source audit, rewrite filter.
 A model with fewer than five finished seeds is shown with its seed count; a model with none gets \\TBD.
-Output: manuscript/tables/*.tex (one table body each) and results/manuscript_numbers.json.
+Output: results/tables/*.tex (one table body each) and results/manuscript_numbers.json.
 Usage: python manuscript_tables.py
 """
 import glob, json, sys
@@ -14,7 +14,7 @@ from sklearn.metrics import roc_auc_score
 sys.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parents[1]))
 from common import ROOT, threshold_at_fpr, tpr_at_fpr
 
-OUT = ROOT / "manuscript/tables"; OUT.mkdir(parents=True, exist_ok=True)
+OUT = ROOT / "results/tables"; OUT.mkdir(parents=True, exist_ok=True)
 SC = {"s1": "In-distribution", "s2": "Cross-corpus", "s3": "Temporal"}
 CLASSICAL = [("MultinomialNB", "Multinomial naive Bayes"), ("LR", "Logistic regression"), ("LinearSVM", "Linear SVM")]
 TRANSFORMERS = [("bert-base-cased", "BERT-base, earlier pipeline"), ("distilbert-base-uncased", "DistilBERT"),
@@ -78,7 +78,7 @@ for key, name in CLASSICAL:
         rs.append(r)
     models[name] = rs
 for key, name in TRANSFORMERS:
-    models[name] = score_runs(glob.glob(str(ROOT / f"results/gpu7/jnsm-tb7-{key}-s*/out/scores_*_best.parquet")))
+    models[name] = score_runs(glob.glob(str(ROOT / f"results/gpu7/tb-{key}-s*/out/scores_*_best.parquet")))
 models[PROPOSED] = score_runs(glob.glob(str(ROOT / "results/mustguard/confirm/s*/out/scores_*_best.parquet")))
 assert len(models[PROPOSED]) == 5
 
@@ -185,7 +185,7 @@ num["loso_n_ham"] = {h: lo[0]["held_out"][h]["n_test_ham"] for h in srcs}
 
 # Table: data of seed 0, from the split manifest of the merged A7 data that every kernel read; checked against the
 # seed-0 score file of the proposed model
-K = ROOT / "results/batch_step3_a7/out"
+K = ROOT / "results/step3_a7/out"
 man = {k.split("/")[1]: v for k, v in json.load(open(K / "split_manifest.json"))["counts"].items() if k.startswith("seed0/")}
 g = pd.read_parquet(glob.glob(str(ROOT / "results/mustguard/confirm/s0/out/scores_*_best.parquet"))[0])
 cnt = g.groupby(["set", "label"]).size().unstack()
@@ -298,7 +298,7 @@ for key, name in CLASSICAL:
     rows.append(f"{name} & 5 & " + " & ".join(ms([c[key]["test"][s]["tpr_fpr_0p1"] for c in a1]) for s in ("s1", "s3", "s2"))
                 + f" & {ms([c[key]['test']['s2']['cal_thr_fpr'] for c in a1])} \\\\")
 for key, name in TRANSFORMERS:
-    rs = score_runs(glob.glob(str(ROOT / f"results/gpu/jnsm-tb-{key}-s*/out/scores_*_best.parquet")))
+    rs = score_runs(glob.glob(str(ROOT / f"results/gpu/tb1-{key}-s*/out/scores_*_best.parquet")))
     if rs:
         rows.append(f"{name} & {len(rs)} & " + " & ".join(ms([r[s]["tpr"] for r in rs]) for s in ("s1", "s3", "s2"))
                     + f" & {ms([r['s2']['fpr'] for r in rs])} \\\\")

@@ -1,0 +1,1 @@
+{"model": "bert-base-cased", "seed": 0, "index": 5, "config": {"lr": 2e-05, "batch": 16, "wd": 0.01}, "val_pr_auc": 0.9999810077501519, "max_len": 300}

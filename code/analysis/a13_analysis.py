@@ -3,12 +3,12 @@ full MuST-Guard and with every baseline before and after adaptation. Two-stage b
 threshold re-estimated on the resampled target-calibration ham in every replicate, Holm across comparisons."""
 import json, pathlib
 import numpy as np, pandas as pd
-HERE = pathlib.Path(__file__).resolve().parents[1]
+HERE = pathlib.Path(__file__).resolve().parents[2]
 STUDY = HERE
 R = STUDY / "results"
 GPU = {"MuST-Guard": ("mg/out/scores_a13-deberta-v3-small_s{s}_best.parquet", "mustguard/confirm/s{s}/out/scores_mg-deberta-v3-small_s{s}_best.parquet"),
-       "BERT-base": ("bert/out/scores_a13-bert-base-cased_s{s}_best.parquet", "gpu7/jnsm-tb7-bert-base-cased-s{s}/out/scores_bert-base-cased_s{s}_best.parquet"),
-       "DistilBERT": ("distil/out/scores_a13-distilbert-base-uncased_s{s}_best.parquet", "gpu7/jnsm-tb7-distilbert-base-uncased-s{s}/out/scores_distilbert-base-uncased_s{s}_best.parquet")}
+       "BERT-base": ("bert/out/scores_a13-bert-base-cased_s{s}_best.parquet", "gpu7/tb-bert-base-cased-s{s}/out/scores_bert-base-cased_s{s}_best.parquet"),
+       "DistilBERT": ("distil/out/scores_a13-distilbert-base-uncased_s{s}_best.parquet", "gpu7/tb-distilbert-base-uncased-s{s}/out/scores_distilbert-base-uncased_s{s}_best.parquet")}
 CLS = ["MultinomialNB", "LR", "LinearSVM"]
 SEEDS, B = range(5), 1000
 
@@ -17,9 +17,9 @@ def load(seed):
     """Per seed: tcal ham ids, eval ids, and {(model, arm): Series score by msg_id}."""
     out = {}
     for m, (a, b) in GPU.items():
-        A = pd.read_parquet(R / "a13" / f"jnsm-a13-{a.format(s=seed)}"); Bb = pd.read_parquet(R / b.format(s=seed))
+        A = pd.read_parquet(R / "a13" / f"a13-{a.format(s=seed)}"); Bb = pd.read_parquet(R / b.format(s=seed))
         out[(m, "A13")] = A; out[(m, "base")] = Bb
-    A = pd.read_parquet(R / f"a13/jnsm-a13-classical/out/classical/classical_a13_scores_seed{seed}.parquet")
+    A = pd.read_parquet(R / f"a13/a13-classical/out/classical/classical_a13_scores_seed{seed}.parquet")
     Bb = pd.read_parquet(R / f"a10/classical_scores_seed{seed}.parquet")
     for m in CLS:
         out[(m, "A13")] = A[A.model == m]; out[(m, "base")] = Bb[Bb.model == m]

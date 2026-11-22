@@ -1,8 +1,8 @@
 """Analysis of PROTOCOL.md A11 from saved per-message scores only (no training).
 
-Proposed = MuST-Guard v2 (results/a11/jnsm-a11-mg2-s*). Compared with MuST-Guard v1 (results/mustguard/confirm/), the
-transformer baselines (results/gpu7/), DistilBERT under the T1 rule (results/a11/jnsm-a11-distil-s*), and the classical
-baselines under the v1 rule (results/a10/) and the T1 rule (results/a11/jnsm-a11-classical/).
+Proposed = MuST-Guard v2 (results/a11/a11-mg2-s*). Compared with MuST-Guard v1 (results/mustguard/confirm/), the
+transformer baselines (results/gpu7/), DistilBERT under the T1 rule (results/a11/a11-distil-s*), and the classical
+baselines under the v1 rule (results/a10/) and the T1 rule (results/a11/a11-classical/).
 Per run and test set: TPR at FPR 0.1% and the FPR realized at the calibration threshold.
 Paired test as in extra_analysis.py: stratified per-message bootstrap of the seed-mean TPR at FPR 0.1%, 10,000 resamples,
 one resample shared by all seeds and models on S2, S3 and G2, per seed on S1; Holm across comparators per test set.
@@ -27,16 +27,16 @@ seed_of = lambda f: int(re.search(r"_s(\d)_best", f).group(1))
 def load():
     runs = {}
     for key, name in GPU.items():
-        for f in glob.glob(str(ROOT / f"results/gpu7/jnsm-tb7-{key}-s*/out/scores_*_best.parquet")):
+        for f in glob.glob(str(ROOT / f"results/gpu7/tb-{key}-s*/out/scores_*_best.parquet")):
             runs.setdefault(name, {})[seed_of(f)] = pd.read_parquet(f)
     for f in glob.glob(str(ROOT / "results/mustguard/confirm/s*/out/scores_*_best.parquet")):
         runs.setdefault("MuST-Guard v1", {})[seed_of(f)] = pd.read_parquet(f)
-    for f in glob.glob(str(ROOT / "results/a11/jnsm-a11-distil-s*/out/scores_*_best.parquet")):
+    for f in glob.glob(str(ROOT / "results/a11/a11-distil-s*/out/scores_*_best.parquet")):
         runs.setdefault("DistilBERT, T1 rule", {})[seed_of(f)] = pd.read_parquet(f)
-    for f in glob.glob(str(ROOT / "results/a11/jnsm-a11-mg2-s*/out/scores_*_best.parquet")):
+    for f in glob.glob(str(ROOT / "results/a11/a11-mg2-s*/out/scores_*_best.parquet")):
         runs.setdefault(PROPOSED, {})[seed_of(f)] = pd.read_parquet(f)
     for pat, tag in (("results/a10/classical_scores_seed*.parquet", ""),
-                     ("results/a11/jnsm-a11-classical/out/classical/classical_t1_scores_seed*.parquet", ", T1 rule")):
+                     ("results/a11/a11-classical/out/classical/classical_t1_scores_seed*.parquet", ", T1 rule")):
         for f in glob.glob(str(ROOT / pat)):
             d = pd.read_parquet(f)
             for key, name in CLASSICAL.items():
@@ -75,7 +75,7 @@ for name, rs in runs.items():
             assert abs(tpr_fast(h, p) - tpr_at_fpr(d["label"].values, d["score"].values, 0.001)) < 1e-9, (name, sd, s)
             res["per_seed"].setdefault(name, {}).setdefault(s, {})[sd] = {"tpr_fpr_0p1": tpr_fast(h, p),
                                                                         "cal_thr_fpr": float((h > thr).mean())}
-for f in sorted(glob.glob(str(ROOT / "results/a11/jnsm-a11-*-s*/out/selected_*.json"))):
+for f in sorted(glob.glob(str(ROOT / "results/a11/a11-*-s*/out/selected_*.json"))):
     j = json.load(open(f)); res["selected"][f.split("/")[-1][9:-5]] ={k: j.get(k) for k in ("index", "config", "sel_key")}
 
 # paired bootstrap, proposed minus each comparator on common seeds

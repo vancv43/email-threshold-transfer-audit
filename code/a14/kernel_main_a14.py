@@ -2,7 +2,7 @@
   abl       A14a: four ablation variants of MuST-Guard, seeds 0-2, each at the seed's selected configuration
   frozen    A14b: stage 1 without target ham, then one epoch with the adaptation ham, gate frozen and trainable, seeds 0-4
   smoke     both jobs on a small sample with a tiny encoder; checks the outputs
-Two queues run in parallel, one per T4 GPU. Inputs: dataset jnsm-a13-data and the code dataset (code/, a13/configs.json).
+Two queues run in parallel, one per T4 GPU. Inputs: dataset a13-data and the code dataset (code/, a13/configs.json).
 Output: work/out/ and DONE.
 """
 import glob, json, os, pathlib, shutil, subprocess, sys, threading

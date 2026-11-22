@@ -1,0 +1,34 @@
+{
+ "model": "bert-base-cased",
+ "seed": 3,
+ "lr": 4e-05,
+ "batch": 32,
+ "wd": 0.01,
+ "epochs": 3,
+ "max_len": 300,
+ "data": "/kaggle/input/jnsm-step3-a7/out/gpu_data",
+ "out": "/kaggle/working/out",
+ "tag": "bert-base-cased_s3_c15",
+ "ckpt": "/tmp/bert-base-cased_s3_c15.pt",
+ "infer": false,
+ "n_train": 43938,
+ "epoch_log": [
+  {
+   "epoch": 1,
+   "val_pr_auc": 0.9998987929720273,
+   "elapsed_s": 679.1
+  },
+  {
+   "epoch": 2,
+   "val_pr_auc": 0.9999330073803067,
+   "elapsed_s": 1350.3
+  },
+  {
+   "epoch": 3,
+   "val_pr_auc": 0.9999976936170083,
+   "elapsed_s": 2021.0
+  }
+ ],
+ "val_pr_auc": 0.9999976936170083,
+ "train_s": 2021.5
+}

@@ -5,19 +5,19 @@ Reads only saved per-message scores (study folder, PROTOCOL.md A10-A12); no trai
 - tab_std_a / tab_std_b: accuracy, precision, recall, F1-score and ROC-AUC at the default decision threshold.
 - tab_dz: Cohen's d_z of the per-seed TPR difference, MuST-Guard minus each baseline, on the seeds both finished.
 - tab_recal: target-domain recalibration, threshold set on n cross-corpus ham drawn at random, scored on the rest.
-Rows: seven baselines, MuST-Guard-SA, MuST-Guard (full) last. Output: ../manuscript/tables/*.tex, ../results_jisa.json
+Rows: seven baselines, MuST-Guard-SA, MuST-Guard (full) last. Output: ../results/tables/*.tex, ../results_jisa.json
 """
 import json, pathlib, re, sys
 import numpy as np
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, roc_auc_score
 
-STUDY = pathlib.Path(__file__).resolve().parents[3] / ".." / "Springer/Journal of Network and Systems Management"
+STUDY = pathlib.Path(__file__).resolve().parents[2]
 STUDY = STUDY.resolve()
 sys.path.insert(0, str(STUDY / "code"))
 exec((STUDY / "code/a11/analyze_a11.py").read_text().split("# per-run point metrics")[0])  # loader: runs, split, per_set, tpr_fast
 from common import threshold_at_fpr
 
-OUT = pathlib.Path(__file__).resolve().parents[1] / "manuscript/tables"; OUT.mkdir(parents=True, exist_ok=True)
+OUT = pathlib.Path(__file__).resolve().parents[2] / "results/tables"; OUT.mkdir(parents=True, exist_ok=True)
 NAME = {"MuST-Guard v1": "MuST-Guard", "MuST-Guard v2": "MuST-Guard-SA"}
 ORDER = ["Multinomial naive Bayes", "Logistic regression", "Linear SVM", "BERT-base, earlier pipeline", "DistilBERT",
          "RoBERTa-base", "DeBERTa-v3-base", "MuST-Guard v2", "MuST-Guard v1"]
@@ -99,12 +99,12 @@ for n in ORDER:
 (OUT / "tab_recal.tex").write_text("\n".join(rows) + "\n")
 res["recal"] = {f"{n}|{k}": list(v) for (n, k), v in rec.items()}
 res["seeds"] = {n: sorted(runs[n]) for n in ORDER}
-(pathlib.Path(__file__).resolve().parents[1] / "results_jisa.json").write_text(json.dumps(res, indent=1))
+(pathlib.Path(__file__).resolve().parents[2] / "results/results_jisa.json").write_text(json.dumps(res, indent=1))
 for n in ORDER:
     print(f"{show(n):28s}", " | ".join(f"n={k}: FPR {100*rec[(n,k)][0]:.2f}% p95 {100*rec[(n,k)][1]:.2f}% TPR {100*rec[(n,k)][2]:.1f}%" for k in NS))
 
 # merged tables for layout: study tab_stats with d_z appended, study tab_g2 with the flips of tab_flips
-ST = STUDY / "manuscript/tables"
+ST = STUDY / "results/tables"
 SCN = {"In-distribution": "s1_test", "Temporal": "s3_test", "Cross-corpus": "s2_test", "$G_2$ rewrites": "g2_rewrite"}
 rows, scen = [], None
 for l in (ST / "tab_stats.tex").read_text().strip().split("\n"):

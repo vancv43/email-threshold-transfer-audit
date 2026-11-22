@@ -4,7 +4,7 @@ gate, and frozen gate, threshold at FPR 0.1% on the target-calibration ham, as i
 and messages with the threshold re-estimated in every replicate, Holm within each analysis."""
 import json, pathlib
 import numpy as np, pandas as pd
-HERE = pathlib.Path(__file__).resolve().parents[1]
+HERE = pathlib.Path(__file__).resolve().parents[2]
 STUDY = HERE
 R = STUDY / "results"
 B = 1000
@@ -52,7 +52,7 @@ def boot(get, arms, ref, seeds, rng):
 out = {}
 # ---------- A14b ----------
 ARMS = ["stage1", "trainable", "frozen"]
-fz = {(a, s): load(R / f"a14/jnsm-a14-frozen/out/scores_a14b-{a}_s{s}_best.parquet") for a in ARMS for s in range(5)}
+fz = {(a, s): load(R / f"a14/a14-frozen/out/scores_a14b-{a}_s{s}_best.parquet") for a in ARMS for s in range(5)}
 rows = []
 for (a, s), d in fz.items():
     t = thr(d[d.set == "tcal"].score.values); e = d[d.set == "s2_test"]
@@ -86,7 +86,7 @@ out["a14b"] = {"per_arm": {a: fb[fb.arm == a].drop(columns=["arm", "seed"]).mean
 VAR = ["full", "noaug", "nostruct", "body", "bodynoaug"]
 def path(v, s):
     return (R / f"mustguard/confirm/s{s}/out/scores_mg-deberta-v3-small_s{s}_best.parquet" if v == "full"
-            else R / f"a14/jnsm-a14-abl/out/scores_a14a-{v}_s{s}_best.parquet")
+            else R / f"a14/a14-abl/out/scores_a14a-{v}_s{s}_best.parquet")
 ab = {(v, s): load(path(v, s)) for v in VAR for s in range(3)}
 rows, cache2 = [], {}
 for (v, s), d in ab.items():

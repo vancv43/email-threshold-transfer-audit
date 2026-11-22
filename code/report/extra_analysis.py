@@ -9,7 +9,7 @@ their per-message scores are produced by the A10 batch jobs.
 - McNemar at the calibration threshold: discordant counts summed over the common seeds, exact binomial test.
 - TPR at FPR 1%, PR-AUC; S3 per test year; S2 per corpus; positives split into spam and phishing; G2 flips;
   conformal set composition (A9 nonconformity); number of ham behind each 0.1% threshold; per-seed realized FPR.
-Output: results/extra_analysis.json and manuscript/tables/tab_*.tex
+Output: results/extra_analysis.json and results/tables/tab_*.tex
 Usage: python extra_analysis.py
 """
 import glob, json, re, sys
@@ -24,7 +24,7 @@ from common import ROOT, threshold_at_fpr, tpr_at_fpr
 from score_mg import fit_temperature, quantile
 
 B, RNG = 10000, np.random.default_rng(20261111)
-OUT = ROOT / "manuscript/tables"
+OUT = ROOT / "results/tables"
 SETS = {"s1_test": "In-distribution", "s2_test": "Cross-corpus", "s3_test": "Temporal", "g2_rewrite": "$G_2$ rewrites"}
 PROPOSED = "Proposed"
 CLASSICAL = {"MultinomialNB": "Multinomial naive Bayes", "LR": "Logistic regression", "LinearSVM": "Linear SVM"}
@@ -36,7 +36,7 @@ res = {}
 def load():
     runs = {}
     for key, name in MODELS.items():
-        for f in glob.glob(str(ROOT / f"results/gpu7/jnsm-tb7-{key}-s*/out/scores_*_best.parquet")):
+        for f in glob.glob(str(ROOT / f"results/gpu7/tb-{key}-s*/out/scores_*_best.parquet")):
             runs.setdefault(name, {})[int(re.search(r"_s(\d)_best", f).group(1))] = pd.read_parquet(f)
     for f in glob.glob(str(ROOT / "results/mustguard/confirm/s*/out/scores_*_best.parquet")):
         runs.setdefault(PROPOSED, {})[int(re.search(r"_s(\d)_best", f).group(1))] = pd.read_parquet(f)
@@ -48,7 +48,7 @@ def load():
 
 
 runs = load()
-meta = pd.read_parquet(ROOT / "data/processed_A7/messages.parquet", columns=["msg_id", "source", "year_month"])
+meta = pd.read_parquet(ROOT / "data/message_meta.parquet", columns=["msg_id", "source", "year_month"])
 meta["year"] = meta["year_month"].str[:4].astype(int)
 SRC, YEAR = meta.set_index("msg_id")["source"], meta.set_index("msg_id")["year"]
 

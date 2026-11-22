@@ -12,7 +12,7 @@
 - tab_g2flips_seed: flips of G2 spam at the calibration threshold per seed, no pooling across seeds.  [m3]
 - tab_year2 / tab_year_head2: S3 by year with the year of the split data, totals equal to Table 1.     [numbers]
 - tab_flow: data flow from parsed messages to the splits of seed 0.                                   [R1, M11]
-Output: ../manuscript/tables/*.tex and ../results_revision.json
+Output: ../results/tables/*.tex and ../results_revision.json
 """
 import json, pathlib, sys
 import numpy as np
@@ -20,7 +20,7 @@ import pandas as pd
 from scipy.stats import beta
 from sklearn.metrics import roc_auc_score
 
-HERE = pathlib.Path(__file__).resolve().parents[1]
+HERE = pathlib.Path(__file__).resolve().parents[2]
 STUDY = HERE
 sys.path.insert(0, str(STUDY / "code"))
 exec((STUDY / "code/a11/analyze_a11.py").read_text().split("# per-run point metrics")[0])  # runs, split, per_set, tpr_fast
@@ -115,7 +115,7 @@ for s in SETS:
 (OUT / "tab_stats_h.tex").write_text("\n".join(rows) + "\n")
 
 # M8: recalibration per target corpus with the order-statistic reference
-meta = pd.read_parquet(STUDY / "data/processed_A7/messages.parquet", columns=["msg_id", "source"]).set_index("msg_id")["source"]
+meta = pd.read_parquet(STUDY / "data/message_meta.parquet", columns=["msg_id", "source"]).set_index("msg_id")["source"]
 plan = [("SpamAssassin", "spamassassin", [1000, 2000]), ("Enron-Spam", None, [1000, 5000, 10000])]
 R = 50; rows = []
 ref_cells = []
@@ -181,7 +181,7 @@ for n in ["BERT-base, earlier pipeline", "DistilBERT", "RoBERTa-base", "DeBERTa-
 (OUT / "tab_g2flips_seed.tex").write_text("\n".join(rows) + "\n")
 
 # numbers: S3 by year on the split data, and the data flow of seed 0
-flow = json.load(open(HERE / "code/flow_seed0.json"))
+flow = json.load(open(HERE / "code/analysis/flow_seed0.json"))
 yr = flow["s3_by_year"]
 years = sorted(yr["0"])
 rows = []
@@ -197,6 +197,6 @@ for n in ORDER:
 rows.append("\\midrule\nHam & " + " & ".join(f"{yr['0'][y_]:,}" for y_ in years) + " \\\\")
 rows.append("Spam & " + " & ".join(f"{yr['1'][y_]:,}" for y_ in years) + " \\\\")
 (OUT / "tab_year2.tex").write_text("\n".join(rows) + "\n"); (OUT / "tab_year_head2.tex").write_text(" & ".join(years) + "\n")
-(HERE / "results_revision.json").write_text(json.dumps(res, indent=1, default=float))
+(HERE / "results/results_revision.json").write_text(json.dumps(res, indent=1, default=float))
 print("confusion S2 MuST-Guard per seed mean:", conf)
 print("pAUC S2:", {nm(k): round(100 * v, 1) for k, v in res["pauc_s2"].items()})

@@ -3,8 +3,8 @@
   distil <seed>   DistilBERT with the T1 rule and the compact grid on one seed, GPU
   classical       the three classical models with the T1 rule, seeds 0-4, CPU
   smoke           every job above on a small sample with a tiny encoder; checks the outputs, GPU
-Inputs: dataset jnsm-a11-data (messages.parquet, splits.parquet, rewrite_g1_kept.parquet, rewrite_g2_kept.parquet)
-and dataset jnsm-a11-code (code/). Output: work/out/ and DONE.
+Inputs: dataset a11-data (messages.parquet, splits.parquet, rewrite_g1_kept.parquet, rewrite_g2_kept.parquet)
+and dataset a11-code (code/). Output: work/out/ and DONE.
 """
 import glob, json, os, pathlib, shutil, subprocess, sys
 import pandas as pd
