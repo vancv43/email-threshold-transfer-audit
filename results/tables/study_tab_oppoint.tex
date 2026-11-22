@@ -1,0 +1,27 @@
+\multicolumn{7}{@{}l}{\emph{In-distribution}} \\
+\quad Multinomial naive Bayes & 99.6 $\pm$ 0.1 & 99.7 $\pm$ 0.3 & 98.4 $\pm$ 0.7 & 99.1 $\pm$ 0.3 & 1.000 $\pm$ 0.000 & 0.1 $\pm$ 0.1 \\
+\quad Logistic regression & 99.8 $\pm$ 0.1 & 99.3 $\pm$ 0.6 & 99.7 $\pm$ 0.2 & 99.5 $\pm$ 0.2 & 1.000 $\pm$ 0.000 & 0.2 $\pm$ 0.1 \\
+\quad Linear SVM & 99.8 $\pm$ 0.1 & 99.4 $\pm$ 0.6 & 99.7 $\pm$ 0.1 & 99.5 $\pm$ 0.3 & 1.000 $\pm$ 0.000 & 0.1 $\pm$ 0.2 \\
+\quad BERT-base, earlier pipeline & 99.7 $\pm$ 0.2 & 99.4 $\pm$ 0.5 & 99.2 $\pm$ 1.4 & 99.3 $\pm$ 0.6 & 1.000 $\pm$ 0.000 & 0.1 $\pm$ 0.1 \\
+\quad DistilBERT & 99.8 $\pm$ 0.1 & 99.5 $\pm$ 0.6 & 99.6 $\pm$ 0.7 & 99.5 $\pm$ 0.4 & 1.000 $\pm$ 0.000 & 0.1 $\pm$ 0.1 \\
+\quad RoBERTa-base$^\dagger$ & 99.8 $\pm$ 0.1 & 99.3 $\pm$ 0.3 & 99.9 $\pm$ 0.2 & 99.6 $\pm$ 0.3 & 1.000 $\pm$ 0.000 & 0.2 $\pm$ 0.1 \\
+\quad DeBERTa-v3-base$^\dagger$ & 99.9 $\pm$ 0.0 & 99.5 $\pm$ 0.2 & 99.9 $\pm$ 0.1 & 99.7 $\pm$ 0.1 & 1.000 $\pm$ 0.000 & 0.1 $\pm$ 0.0 \\
+\quad Proposed & 99.9 $\pm$ 0.1 & 99.6 $\pm$ 0.3 & 99.8 $\pm$ 0.2 & 99.7 $\pm$ 0.3 & 1.000 $\pm$ 0.000 & 0.1 $\pm$ 0.1 \\
+\multicolumn{7}{@{}l}{\emph{Cross-corpus}} \\
+\quad Multinomial naive Bayes & 74.1 $\pm$ 8.6 & 66.1 $\pm$ 8.4 & 90.8 $\pm$ 4.7 & 76.0 $\pm$ 4.6 & 0.876 $\pm$ 0.020 & 39.2 $\pm$ 19.0 \\
+\quad Logistic regression & 69.9 $\pm$ 7.9 & 60.6 $\pm$ 6.9 & 97.0 $\pm$ 2.0 & 74.3 $\pm$ 4.7 & 0.904 $\pm$ 0.012 & 51.6 $\pm$ 15.6 \\
+\quad Linear SVM & 71.8 $\pm$ 8.8 & 62.5 $\pm$ 7.7 & 96.4 $\pm$ 2.2 & 75.5 $\pm$ 5.2 & 0.906 $\pm$ 0.014 & 47.6 $\pm$ 17.4 \\
+\quad BERT-base, earlier pipeline & 77.4 $\pm$ 6.1 & 72.7 $\pm$ 14.2 & 87.9 $\pm$ 14.3 & 77.6 $\pm$ 3.9 & 0.926 $\pm$ 0.010 & 30.9 $\pm$ 19.7 \\
+\quad DistilBERT & 73.0 $\pm$ 5.4 & 63.8 $\pm$ 7.6 & 95.0 $\pm$ 5.3 & 75.9 $\pm$ 3.0 & 0.919 $\pm$ 0.023 & 44.4 $\pm$ 13.7 \\
+\quad RoBERTa-base$^\dagger$ & 78.7 $\pm$ 0.8 & 69.1 $\pm$ 1.9 & 94.0 $\pm$ 3.6 & 79.6 $\pm$ 0.3 & 0.937 $\pm$ 0.015 & 33.5 $\pm$ 4.1 \\
+\quad DeBERTa-v3-base$^\dagger$ & 74.5 $\pm$ 4.3 & 64.4 $\pm$ 4.2 & 95.9 $\pm$ 2.7 & 77.0 $\pm$ 3.2 & 0.937 $\pm$ 0.024 & 42.4 $\pm$ 7.7 \\
+\quad Proposed & 79.0 $\pm$ 3.9 & 69.7 $\pm$ 4.7 & 93.6 $\pm$ 2.0 & 79.8 $\pm$ 2.9 & 0.929 $\pm$ 0.021 & 32.7 $\pm$ 7.9 \\
+\multicolumn{7}{@{}l}{\emph{Temporal}} \\
+\quad Multinomial naive Bayes & 98.5 $\pm$ 0.6 & 99.8 $\pm$ 0.2 & 94.9 $\pm$ 2.2 & 97.2 $\pm$ 1.1 & 0.999 $\pm$ 0.000 & 0.1 $\pm$ 0.1 \\
+\quad Logistic regression & 99.4 $\pm$ 0.4 & 99.7 $\pm$ 0.2 & 98.2 $\pm$ 1.4 & 98.9 $\pm$ 0.6 & 1.000 $\pm$ 0.000 & 0.1 $\pm$ 0.1 \\
+\quad Linear SVM & 99.2 $\pm$ 0.5 & 99.7 $\pm$ 0.2 & 97.6 $\pm$ 2.1 & 98.6 $\pm$ 1.0 & 1.000 $\pm$ 0.000 & 0.1 $\pm$ 0.1 \\
+\quad BERT-base, earlier pipeline & 99.3 $\pm$ 1.0 & 99.7 $\pm$ 0.2 & 97.8 $\pm$ 3.8 & 98.7 $\pm$ 1.9 & 1.000 $\pm$ 0.000 & 0.1 $\pm$ 0.1 \\
+\quad DistilBERT & 99.5 $\pm$ 0.6 & 99.7 $\pm$ 0.1 & 98.6 $\pm$ 2.0 & 99.2 $\pm$ 1.0 & 1.000 $\pm$ 0.000 & 0.1 $\pm$ 0.0 \\
+\quad RoBERTa-base$^\dagger$ & 99.8 $\pm$ 0.1 & 99.8 $\pm$ 0.1 & 99.4 $\pm$ 0.3 & 99.6 $\pm$ 0.1 & 1.000 $\pm$ 0.000 & 0.1 $\pm$ 0.0 \\
+\quad DeBERTa-v3-base$^\dagger$ & 99.8 $\pm$ 0.1 & 99.7 $\pm$ 0.1 & 99.5 $\pm$ 0.3 & 99.6 $\pm$ 0.1 & 1.000 $\pm$ 0.000 & 0.1 $\pm$ 0.0 \\
+\quad Proposed & 99.8 $\pm$ 0.1 & 99.8 $\pm$ 0.1 & 99.3 $\pm$ 0.3 & 99.6 $\pm$ 0.1 & 1.000 $\pm$ 0.000 & 0.1 $\pm$ 0.0 \\

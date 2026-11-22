@@ -1,0 +1,184 @@
+{
+ "mustguard": {
+  "2": {
+   "lr": 1e-05,
+   "batch": 32,
+   "wd": 0.01
+  },
+  "3": {
+   "lr": 1e-05,
+   "batch": 16,
+   "wd": 0.0
+  },
+  "4": {
+   "lr": 1e-05,
+   "batch": 16,
+   "wd": 0.0
+  },
+  "1": {
+   "lr": 4e-05,
+   "batch": 16,
+   "wd": 0.0
+  },
+  "0": {
+   "lr": 2e-05,
+   "batch": 16,
+   "wd": 0.01
+  }
+ },
+ "classical": {
+  "0": {
+   "MultinomialNB": {
+    "view": "char35",
+    "param": 0.003593813663804626
+   },
+   "LR": {
+    "view": "char35",
+    "param": 100.0
+   },
+   "LinearSVM": {
+    "view": "char35",
+    "param": 2.1544346900318843
+   }
+  },
+  "1": {
+   "MultinomialNB": {
+    "view": "word12",
+    "param": 0.001
+   },
+   "LR": {
+    "view": "word12",
+    "param": 27.825594022071257
+   },
+   "LinearSVM": {
+    "view": "word12",
+    "param": 0.1668100537200059
+   }
+  },
+  "2": {
+   "MultinomialNB": {
+    "view": "char35",
+    "param": 0.003593813663804626
+   },
+   "LR": {
+    "view": "char35",
+    "param": 100.0
+   },
+   "LinearSVM": {
+    "view": "char35",
+    "param": 2.1544346900318843
+   }
+  },
+  "3": {
+   "MultinomialNB": {
+    "view": "word12",
+    "param": 0.001
+   },
+   "LR": {
+    "view": "char35",
+    "param": 100.0
+   },
+   "LinearSVM": {
+    "view": "char35",
+    "param": 100.0
+   }
+  },
+  "4": {
+   "MultinomialNB": {
+    "view": "word12",
+    "param": 0.001
+   },
+   "LR": {
+    "view": "char35",
+    "param": 100.0
+   },
+   "LinearSVM": {
+    "view": "word12",
+    "param": 7.742636826811277
+   }
+  }
+ },
+ "bert-base-cased": {
+  "1": {
+   "lr": 1e-05,
+   "batch": 16,
+   "wd": 0.01
+  },
+  "0": {
+   "lr": 2e-05,
+   "batch": 16,
+   "wd": 0.01
+  },
+  "2": {
+   "lr": 3e-05,
+   "batch": 32,
+   "wd": 0.0
+  },
+  "3": {
+   "lr": 4e-05,
+   "batch": 32,
+   "wd": 0.01
+  },
+  "4": {
+   "lr": 1e-05,
+   "batch": 32,
+   "wd": 0.01
+  }
+ },
+ "distilbert-base-uncased": {
+  "3": {
+   "lr": 3e-05,
+   "batch": 32,
+   "wd": 0.0
+  },
+  "4": {
+   "lr": 4e-05,
+   "batch": 16,
+   "wd": 0.01
+  },
+  "2": {
+   "lr": 5e-05,
+   "batch": 32,
+   "wd": 0.0
+  },
+  "0": {
+   "lr": 4e-05,
+   "batch": 32,
+   "wd": 0.0
+  },
+  "1": {
+   "lr": 2e-05,
+   "batch": 32,
+   "wd": 0.0
+  }
+ },
+ "roberta-base": {
+  "1": {
+   "lr": 4e-05,
+   "batch": 32,
+   "wd": 0.01
+  },
+  "0": {
+   "lr": 3e-05,
+   "batch": 32,
+   "wd": 0.0
+  }
+ },
+ "microsoft/deberta-v3-base": {
+  "0": {
+   "lr": 2e-05,
+   "batch": 16,
+   "wd": 0.0
+  },
+  "4": {
+   "lr": 1e-05,
+   "batch": 16,
+   "wd": 0.01
+  },
+  "3": {
+   "lr": 1e-05,
+   "batch": 16,
+   "wd": 0.0
+  }
+ }
+}
