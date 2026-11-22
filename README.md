@@ -41,8 +41,8 @@ TPR at an FPR of 0.1% and the FPR realized on S2 at the transferred threshold, p
 | Linear SVM | 5 | 99.2 ± 1.2 | 97.8 ± 1.6 | 96.6 ± 1.4 | 6.3 ± 1.2 | 47.6 ± 17.4 |
 | BERT-base | 5 | 98.2 ± 3.7 | 99.5 ± 0.1 | 99.3 ± 0.3 | 10.3 ± 4.2 | 30.9 ± 19.7 |
 | DistilBERT | 5 | 98.1 ± 4.0 | 99.5 ± 0.1 | 99.5 ± 0.3 | 9.6 ± 6.2 | 44.4 ± 13.7 |
-| RoBERTa-base | 3 | 99.0 ± 1.8 | 99.4 ± 0.1 | 99.6 ± 0.1 | 15.0 ± 4.1 | 33.5 ± 4.1 |
-| DeBERTa-v3-base | 3 | 99.8 ± 0.1 | 99.6 ± 0.1 | 99.8 ± 0.1 | 17.9 ± 8.4 | 42.4 ± 7.7 |
+| RoBERTa-base | 5 | 99.3 ± 1.3 | 99.3 ± 0.4 | 99.5 ± 0.2 | 14.4 ± 6.0 | 29.1 ± 14.8 |
+| DeBERTa-v3-base | 5 | 99.8 ± 0.1 | 99.6 ± 0.1 | 99.8 ± 0.1 | 12.6 ± 9.9 | 37.8 ± 8.3 |
 | MuST-Guard-SA (ours) | 5 | 99.4 ± 1.0 | 99.5 ± 0.2 | 99.7 ± 0.3 | 6.7 ± 8.7 | 51.6 ± 19.3 |
 | MuST-Guard (ours) | 5 | 99.7 ± 0.4 | 99.5 ± 0.3 | 99.6 ± 0.2 | 10.7 ± 14.8 | 32.7 ± 7.9 |
 
@@ -66,6 +66,24 @@ Retraining on 5,000 target-site ham, percent, mean over five seeds:
 
 *Figure 8. Recalibration on target-site ham: realized FPR against the number of local ham messages, and detection.* [PDF](figures/figure8.pdf)
 
+
+Ablation of MuST-Guard on seeds 0-2, TPR at an FPR of 0.1% and the FPR realized on S2, percent:
+
+| Variant | S1 | S3 | G2 rewrites | G2 drop | S2 | S2 realized FPR |
+|---|---|---|---|---|---|---|
+| Body view, no augmentation | 98.6 ± 2.4 | 98.9 ± 1.0 | 99.0 ± 0.8 | -0.06 | 21.4 ± 16.7 | 28.8 ± 11.6 |
+| Body view | 99.7 ± 0.4 | 99.5 ± 0.0 | 99.6 ± 0.1 | -0.09 | 20.2 ± 11.7 | 34.6 ± 13.7 |
+| Four views, no augmentation | 99.6 ± 0.7 | 99.5 ± 0.2 | 99.6 ± 0.1 | +0.09 | 5.7 ± 5.4 | 38.6 ± 23.6 |
+| Without the structure view | 99.6 ± 0.4 | 99.5 ± 0.1 | 99.7 ± 0.1 | -0.15 | 12.7 ± 13.2 | 39.9 ± 16.0 |
+| MuST-Guard (ours) | 99.7 ± 0.5 | 99.5 ± 0.1 | 99.6 ± 0.1 | +0.00 | 1.4 ± 1.3 | 36.9 ± 7.1 |
+
+Frozen-gate adaptation, five seeds, percent and gate weights on the Enron-Spam spam:
+
+| Arm | S2 TPR | Enron-Spam | SpamAssassin | FPR | S1 | S3 | Body | Structure |
+|---|---|---|---|---|---|---|---|---|
+| Recalibrated only | 18.7 ± 12.6 | 14.9 | 50.6 | 0.14 | 99.7 | 99.4 | 0.37 | 0.50 |
+| Adapted, gate trainable | 12.6 ± 3.1 | 3.7 | 88.7 | 0.15 | 99.7 | 99.3 | 0.92 | 0.07 |
+| Adapted, gate frozen | 12.7 ± 1.6 | 3.5 | 90.0 | 0.15 | 99.7 | 99.3 | 0.84 | 0.15 |
 
 All tables of the manuscript are in [`results/tables/`](results/tables) and the numbers behind them in
 [`results/`](results).

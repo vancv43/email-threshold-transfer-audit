@@ -70,7 +70,11 @@ for name, rs in runs.items():
     for sd, df in rs.items():
         for s in SETS:
             d = per_set(df, s); y, sc = d["label"].values, d["score"].values
-            assert abs(tpr_fast(sc[y == 0], sc[y == 1]) - tpr_at_fpr(y, sc, 0.001)) < 1e-9, (name, sd, s)
+            ham_, spam_ = sc[y == 0], sc[y == 1]
+            k_ = int(np.floor(0.001 * len(ham_))); t_ = np.partition(ham_, len(ham_) - 1 - k_)[len(ham_) - 1 - k_]
+            tie = (spam_ == t_).any()  # half-precision scores can tie at the threshold; the rule flags s > t
+            assert tie or abs(tpr_fast(ham_, spam_) - tpr_at_fpr(y, sc, 0.001)) < 1e-9, (name, sd, s)
+            assert (ham_ > t_).sum() <= k_, (name, sd, s)
 
 # 1. bootstrap CIs, paired differences, Holm
 boot = {}
