@@ -26,8 +26,8 @@ Spam and phishing filters are tuned on random splits of public corpora, yet mail
 3. **Evidence that the operating threshold does not transfer across corpora.** A threshold set for an FPR of 0.1% blocked 29% to 52% of the legitimate mail of a new corpus for every model, and ranking in the low false positive range failed with it while ranking over the whole range stayed high. Body-only rewrites of known campaigns by an unseen LLM did not lower detection; these rewrites kept the subject, sender, links, and HTML structure, which carry about half of the spam weight of MuST-Guard, so the test does not show robustness to LLM-written campaigns.
 4. **Recalibration and adaptation on target-site ham.** Local ham brought the false positive rate to the level an order statistic predicts but left most spam undetected. Retraining on local ham without spam labels raised pooled detection for the single-view models at a cost in temporal detection, whereas MuST-Guard kept its temporal detection and caught 83.2% of the SpamAssassin spam, the most of any adapted model; freezing its gates during adaptation did not change its detection. Split manifests, rewrite identifiers, and scripts are available for repeating the audit.
 
-<p align="center"><img src="figures/png/Figure1.png" width="100%" alt="Figure 1"></p>
-<p align="center"><em><b>Figure 1.</b> Audit procedure. Left: message sets from the known pool dated 2015 to 2020 to the unseen S3, S2 and G2 test sets, and the per-seed split in which G<sub>1</sub> paraphrases enter training only. Right: MuST-Guard produces scores and conformal sets, and every test set is audited at the fixed threshold before recalibration on target-site ham.</em> <a href="figures/Figure1.pdf">[PDF]</a></p>
+<p align="center"><img src="figures/png/figure1.png" width="100%" alt="Figure 1"></p>
+<p align="center"><em><b>Figure 1.</b> Audit procedure. Left: message sets from the known pool dated 2015 to 2020 to the unseen S3, S2 and G2 test sets, and the per-seed split in which G<sub>1</sub> paraphrases enter training only. Right: MuST-Guard produces scores and conformal sets, and every test set is audited at the fixed threshold before recalibration on target-site ham.</em> <a href="figures/figure1.pdf">[PDF]</a></p>
 
 ## Evidence for every reported number
 No table of the paper was typed by hand. Each one is written by a script from the stored score files and can be checked with one command:
@@ -56,11 +56,11 @@ No table of the paper was typed by hand. Each one is written by a script from th
 | G2, rewrites | S3 spam reworded by Mistral-7B-Instruct, body only, links kept; training paraphrases come from Qwen2.5-7B-Instruct |
 | Statistics | two-stage bootstrap over seeds and messages, threshold re-estimated in every replicate, Holm adjustment |
 
-<p align="center"><img src="figures/png/Figure2.png" width="100%" alt="Figure 2"></p>
-<p align="center"><em><b>Figure 2.</b> MuST-Guard. Four views are encoded into embeddings h<sup>v</sup>, weighted by gates a<sup>v</sup>, decoded into a score s(x), compared with the calibration threshold, and checked by a split conformal set; an empty set means abstention.</em> <a href="figures/Figure2.pdf">[PDF]</a></p>
+<p align="center"><img src="figures/png/figure2.png" width="100%" alt="Figure 2"></p>
+<p align="center"><em><b>Figure 2.</b> MuST-Guard. Four views are encoded into embeddings h<sup>v</sup>, weighted by gates a<sup>v</sup>, decoded into a score s(x), compared with the calibration threshold, and checked by a split conformal set; an empty set means abstention.</em> <a href="figures/figure2.pdf">[PDF]</a></p>
 
-<p align="center"><img src="figures/png/Figure3.png" width="100%" alt="Figure 3"></p>
-<p align="center"><em><b>Figure 3.</b> Convergence on the validation split: one minus the validation PR-AUC of each selected configuration by epoch, and the validation TPR at an FPR of 0.1% of all 20 MuST-Guard configurations of each seed.</em> <a href="figures/Figure3.pdf">[PDF]</a></p>
+<p align="center"><img src="figures/png/figure3.png" width="100%" alt="Figure 3"></p>
+<p align="center"><em><b>Figure 3.</b> Convergence on the validation split: one minus the validation PR-AUC of each selected configuration by epoch, and the validation TPR at an FPR of 0.1% of all 20 MuST-Guard configurations of each seed.</em> <a href="figures/figure3.pdf">[PDF]</a></p>
 
 ## Results
 ### Detection and threshold transfer
@@ -78,8 +78,8 @@ TPR at an FPR of 0.1%, and the FPR realized on S2 by the transferred threshold, 
 | MuST-Guard-SA (ours) | 5 | 99.4 ± 1.0 | 99.5 ± 0.2 | 99.7 ± 0.3 | 6.7 ± 8.7 | 51.6 ± 19.3 |
 | MuST-Guard (ours) | 5 | 99.7 ± 0.4 | 99.5 ± 0.3 | 99.6 ± 0.2 | 10.7 ± 14.8 | 32.7 ± 7.9 |
 
-<p align="center"><img src="figures/png/Figure4.png" width="100%" alt="Figure 4"></p>
-<p align="center"><em><b>Figure 4.</b> Cross-corpus failure: TPR at an FPR of 0.1% on S2 with one dot per seed, and the FPR realized on each test set by the threshold fixed on the calibration split.</em> <a href="figures/Figure4.pdf">[PDF]</a></p>
+<p align="center"><img src="figures/png/figure4.png" width="100%" alt="Figure 4"></p>
+<p align="center"><em><b>Figure 4.</b> Cross-corpus failure: TPR at an FPR of 0.1% on S2 with one dot per seed, and the FPR realized on each test set by the threshold fixed on the calibration split.</em> <a href="figures/figure4.pdf">[PDF]</a></p>
 
 ### Retraining on target-site ham
 Threshold set on 5,000 target-calibration ham; S2 TPR without and with retraining on 5,000 adaptation ham, percent, mean over five seeds:
@@ -109,11 +109,11 @@ Threshold set on 5,000 target-calibration ham; S2 TPR without and with retrainin
 | Adapted, gate trainable | 12.6 ± 3.1 | 3.7 | 88.7 | 0.15 | 99.7 | 99.3 | 0.92 | 0.07 |
 | Adapted, gate frozen | 12.7 ± 1.6 | 3.5 | 90.0 | 0.15 | 99.7 | 99.3 | 0.84 | 0.15 |
 
-<p align="center"><img src="figures/png/Figure7.png" width="100%" alt="Figure 7"></p>
-<p align="center"><em><b>Figure 7.</b> Conformal abstention of MuST-Guard: coverage against the nominal level, composition of the prediction sets, and risk–coverage at the calibration threshold.</em> <a href="figures/Figure7.pdf">[PDF]</a></p>
+<p align="center"><img src="figures/png/figure7.png" width="100%" alt="Figure 7"></p>
+<p align="center"><em><b>Figure 7.</b> Conformal abstention of MuST-Guard: coverage against the nominal level, composition of the prediction sets, and risk–coverage at the calibration threshold.</em> <a href="figures/figure7.pdf">[PDF]</a></p>
 
-<p align="center"><img src="figures/png/Figure8.png" width="100%" alt="Figure 8"></p>
-<p align="center"><em><b>Figure 8.</b> Recalibration on target-site ham: realized FPR on the remaining S2 ham, mean and 95th percentile, and TPR at the recalibrated threshold.</em> <a href="figures/Figure8.pdf">[PDF]</a></p>
+<p align="center"><img src="figures/png/figure8.png" width="100%" alt="Figure 8"></p>
+<p align="center"><em><b>Figure 8.</b> Recalibration on target-site ham: realized FPR on the remaining S2 ham, mean and 95th percentile, and TPR at the recalibrated threshold.</em> <a href="figures/figure8.pdf">[PDF]</a></p>
 
 Every other table of the paper is in [`results/tables/`](results/tables).
 
